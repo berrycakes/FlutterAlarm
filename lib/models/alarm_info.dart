@@ -20,6 +20,8 @@ class AlarmInfo {
         isPending: json["isPending"],
         gradientColorIndex: json["gradientColorIndex"],
       );
+
+  get gradientColors => null;
   Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,
