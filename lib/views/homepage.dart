@@ -35,8 +35,33 @@ class _HomepageState extends State<Homepage> {
               builder: (BuildContext context, MenuInfo value, Widget child) {
                 if(value.menuType == MenuType.clock) return ClockPage();
                 else if(value.menuType == MenuType.alarm) return AlarmPage();
-                else if(value.menuType == MenuType.stopwatch) return Container(child: Text('hello'));
-                else return Container(child: Text('hi'));
+                else  return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 32, vertical:64),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        value.title,
+                        style: TextStyle(
+                          fontFamily: 'work',
+                          fontWeight: FontWeight.w700,
+                          color: CustomColors.primaryTextColor,
+                          fontSize: 24
+                      )
+                    ),
+                    SizedBox(height: 200),
+                    Image.asset('assets/Sleep.png',
+                    scale: 1.5,
+                    fit: BoxFit.contain,
+                    height: 100.0,
+                    width: 100.0),
+                    Text('Coming Soon!',
+                      style: TextStyle(
+                      fontFamily: 'work', 
+                      color: CustomColors.primaryTextColor,
+                      fontSize: 14)
+                    )
+                  ]));
               }
             )
           )
@@ -64,11 +89,17 @@ class _HomepageState extends State<Homepage> {
           }, 
           child: Column(
             children: <Widget> [
-              Image.asset(currentMenuInfo.imageSource, scale: 1.5),
+              Image.asset(
+                currentMenuInfo.imageSource, 
+                scale: 1.5,
+                fit: BoxFit.contain,
+                height: 50.0,
+                width: 50.0,
+                ),
               SizedBox(height: 16),
               Text(
                 currentMenuInfo.title ?? '', style: TextStyle(
-                  fontFamily: 'avenir', 
+                  fontFamily: 'work', 
                   color: CustomColors.primaryTextColor,
                   fontSize: 14
                 )

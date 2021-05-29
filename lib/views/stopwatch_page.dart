@@ -11,7 +11,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
   Widget build(BuildContext context) {
     return Container(
       child: Text('Stopwatch here', style: TextStyle(
-        fontFamily: 'avenir',
+        fontFamily: 'work',
         fontSize: 50,
         color: CustomColors.primaryTextColor
       )

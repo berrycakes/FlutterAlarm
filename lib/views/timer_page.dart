@@ -10,7 +10,7 @@ class _TimerPageState extends State<TimerPage> {
   @override
   Widget build(BuildContext context) {
     return Container(child: Text('Timer here', style: TextStyle(
-        fontFamily: 'avenir',
+        fontFamily: 'work',
         fontSize: 50,
         color: CustomColors.primaryTextColor
       )

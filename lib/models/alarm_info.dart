@@ -21,7 +21,8 @@ class AlarmInfo {
         gradientColorIndex: json["gradientColorIndex"],
       );
 
-  get gradientColors => null;
+  // get gradientColors => null;
+  
   Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,

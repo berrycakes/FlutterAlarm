@@ -1,3 +1,7 @@
+// @dart=2.9
+
+import 'dart:async';
+import 'package:alarm_clock/constants/theme_data.dart';
 import 'package:alarm_clock/views/clock_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -12,7 +16,7 @@ class _ClockPageState extends State<ClockPage> {
 
   Widget build(BuildContext context) {
     var now = DateTime.now();
-    var formattedTime = DateFormat('HH:mm').format(now);
+    
     var formattedDate = DateFormat('EEE, d MMM').format(now);
     var timeZoneString = now.timeZoneOffset.toString().split('.').first;
     var offsetSign = '';
@@ -34,9 +38,9 @@ class _ClockPageState extends State<ClockPage> {
             child: Text(
               'Clock', 
               style: TextStyle(
-                color: Colors.white, 
+                color: CustomColors.primaryTextColor, 
                 fontWeight: FontWeight.w700,
-                fontFamily: 'avenir',
+                fontFamily: 'work',
                 fontSize: 24
               )
             )
@@ -46,19 +50,12 @@ class _ClockPageState extends State<ClockPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget> [
-                Text(
-                  formattedTime, 
-                  style: TextStyle(
-                    color: Colors.white, 
-                    fontFamily: 'avenir',
-                    fontSize: 64
-                  )
-                ),
+                DigitalClockWidget(),
                 Text(
                   formattedDate, 
                   style: TextStyle(
-                    color: Colors.white, 
-                    fontFamily: 'avenir',
+                    color: CustomColors.primaryTextColor, 
+                    fontFamily: 'work',
                     fontSize: 20
                   )
                 )
@@ -83,8 +80,8 @@ class _ClockPageState extends State<ClockPage> {
                 Text(
                   'Timezone', 
                   style: TextStyle(
-                    color: Colors.white, 
-                    fontFamily: 'avenir',
+                    color: CustomColors.primaryTextColor,
+                    fontFamily: 'work',
                     fontSize: 20
                   )
                 ),
@@ -93,7 +90,7 @@ class _ClockPageState extends State<ClockPage> {
                   children: <Widget>[
                     Icon(
                       Icons.language, 
-                      color: Colors.white
+                      color: CustomColors.primaryTextColor,
                     ),
                     SizedBox(
                       width: 16
@@ -101,8 +98,8 @@ class _ClockPageState extends State<ClockPage> {
                     Text(
                       'UTC' + offsetSign + timeZoneString, 
                       style: TextStyle(
-                        color: Colors.white, 
-                        fontFamily: 'avenir',
+                        color: CustomColors.primaryTextColor,
+                        fontFamily: 'work',
                         fontSize: 14
                       )
                     )
@@ -114,5 +111,44 @@ class _ClockPageState extends State<ClockPage> {
         ]
       )
       );
+  }
+}
+
+class DigitalClockWidget extends StatefulWidget {
+    const DigitalClockWidget({
+    Key key,
+  }) : super(key :  key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return DigitalClockWidgetState();
+  }
+}
+
+class DigitalClockWidgetState extends State<DigitalClockWidget> {
+  var formattedTime = DateFormat('HH:mm').format(DateTime.now()); 
+  @override 
+  void initState() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      var previousMinute = DateTime.now().add(Duration(seconds: -1)).minute;
+      var currentMinute = DateTime.now().minute;
+      if (previousMinute != currentMinute) {
+      setState(() {
+        formattedTime = DateFormat('HH:mm').format(DateTime.now());
+      });
+    }});
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      formattedTime,
+      style: TextStyle(
+        fontFamily: 'work',
+        color: CustomColors.primaryTextColor,
+        fontSize: 64
+      )
+    );
   }
 }

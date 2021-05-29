@@ -66,14 +66,14 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: avenir
+    - family: work
       fonts:
-        - asset: assets/fonts/Avenir-Book.ttf
-        - asset: assets/fonts/Avenir-Heavy.ttf
+        - asset: assets/fonts/WorkSans-Regular.ttf
+        - asset: assets/fonts/WorkSans-SemiBold.ttf
           weight: 700
-        - asset: assets/fonts/Avenir-Medium.ttf
+        - asset: assets/fonts/WorkSans-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Avenir-Light.ttf
+        - asset: assets/fonts/WorkSans-Light.ttf
           weight: 300
 
 
