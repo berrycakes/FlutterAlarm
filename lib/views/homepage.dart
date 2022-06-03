@@ -6,8 +6,10 @@ import 'package:alarm_clock/enums.dart';
 import 'package:alarm_clock/models/menu_info.dart';
 import 'package:alarm_clock/views/clock_page.dart';
 import 'package:alarm_clock/views/alarm_page.dart';
+import 'package:alarm_clock/views/stopwatch_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/animation.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -33,8 +35,10 @@ class _HomepageState extends State<Homepage> {
           Expanded(
             child: Consumer<MenuInfo> (
               builder: (BuildContext context, MenuInfo value, Widget child) {
+                
                 if(value.menuType == MenuType.clock) return ClockPage();
                 else if(value.menuType == MenuType.alarm) return AlarmPage();
+                else if(value.menuType ==MenuType.stopwatch) return LogoApp();
                 else  return Container(
                   padding: EdgeInsets.symmetric(horizontal: 32, vertical:64),
                   child: Column(
@@ -110,4 +114,16 @@ class _HomepageState extends State<Homepage> {
       }
     );
   }
+}
+
+class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
+  final Widget page;
+
+  FadeRouteBuilder({@required this.page})
+      : super(
+          pageBuilder: (context, animation1, animation2) => page,
+          transitionsBuilder: (context, animation1, animation2, child) {
+            return FadeTransition(opacity: animation1, child: child);
+          },
+        );
 }

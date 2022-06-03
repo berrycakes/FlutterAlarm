@@ -1,6 +1,7 @@
 // @dart=2.9
 
 import 'dart:async';
+import 'package:alarm_clock/constants/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -49,7 +50,7 @@ class ClockPainter extends CustomPainter {
       var radius = min(centerX, centerY);
 
       var fillBrush = Paint()
-      ..color = Colors.white70;
+      ..color = CustomColors.clockBG;
 
       var outlineBrush = Paint()
       ..color = Colors.grey[700]
